@@ -15,18 +15,20 @@
         <div class="content-wrapper">
             <header class="clue-header">
                 <div class="clue-number">Clue II</div>
-                <h1 class="title-clue">The Navigator's Guide</h1>
+                <h1 class="title-clue">The Stripes of Time</h1>
             </header>
 
             <main class="main-content">
                 <div class="clue-box">
                     <div class="clue-decoration">⊕</div>
                     <div class="clue-text">
-                        <p class="riddle-line">Four cardinal points spin round and round,</p>
-                        <p class="riddle-line">North seeks south, magnetic bound.</p>
-                        <p class="riddle-line">When sailors drift far from the shore,</p>
-                        <p class="riddle-line">This faithful tool guides evermore.</p>
-                        <p class="riddle-question">What heavy iron object keeps a ship from drifting when it drops to the seafloor?</p>
+                        <p class="riddle-line">With <a href="https://pyleoclim-util.readthedocs.io/" target="_blank">Pyleoclim</a> in hand, your journey's not done,</p>
+                        <p class="riddle-line">Let a Series be born, let the code be run.</p>
+                        <p class="riddle-line">Create warming stripes to see time's flow,</p>
+                        <p class="riddle-line">Watch colors shift as temperatures grow.</p>
+                        <p class="riddle-line">Examine the hues as the centuries advance,</p>
+                        <p class="riddle-line">The modern era's warmth shall enhance.</p>
+                        <p class="riddle-question">What color dominates the stripes around the year 250 CE, revealing the climate's tale?</p>
                     </div>
                     <div class="clue-decoration mirror">⊕</div>
                 </div>
@@ -38,8 +40,7 @@
                     </div>
                     <div id="feedback" class="feedback-message"></div>
                     <div id="next-clue" class="next-clue-reveal" style="display: none;">
-                        <p class="success-message">🎉 Correct! The final page is:</p>
-                        <p class="next-page-name"><strong>anchor.html</strong></p>
+                        <p class="success-message">🎉 Correct! The warmth reveals the path.</p>
                         <a href="anchor.html" class="nav-button primary">Continue to Final Clue →</a>
                     </div>
                 </div>
@@ -51,8 +52,8 @@
                     const nextClue = document.getElementById('next-clue');
                     
                     // Accept variations of the answer
-                    const correctAnswers = ['anchor', 'an anchor', 'the anchor'];
-                    
+                    const correctAnswers = ['red', 'red stripes', 'warm', 'red/warm', 'red (warm)', 'warm colors', 'red colors'];
+
                     if (correctAnswers.includes(input)) {
                         feedback.textContent = '';
                         nextClue.style.display = 'block';
@@ -61,7 +62,7 @@
                         feedback.textContent = 'Please enter an answer.';
                         feedback.className = 'feedback-message error';
                     } else {
-                        feedback.textContent = 'Not quite right. Think about what keeps a ship in place...';
+                        feedback.textContent = 'Not quite right. Look at the warming stripes around year 250 CE - what color indicates warmth?';
                         feedback.className = 'feedback-message error';
                     }
                 }
@@ -78,7 +79,7 @@
                     <details class="hint-toggle">
                         <summary>Need a hint?</summary>
                         <p class="hint-text">
-                            Ships use this heavy metal device, attached to a chain, to stay in one place when they stop. It sinks to the ocean floor and grips the seabed.
+                            Use Pyleoclim to load your CSV data into a Series object and create a stripes plot (check the documentation for the Series.stripes method). Look at the colors displayed around year 250 CE - warmer temperatures show up as red/warm colors.
                         </p>
                     </details>
                 </div>

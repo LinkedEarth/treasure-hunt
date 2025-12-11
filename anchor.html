@@ -15,38 +15,99 @@
         <div class="content-wrapper">
             <header class="clue-header">
                 <div class="clue-number">Clue III</div>
-                <h1 class="title-clue">The Final Anchor</h1>
+                <h1 class="title-clue">The Spectral Mystery</h1>
             </header>
 
             <main class="main-content">
                 <div class="clue-box">
                     <div class="clue-decoration">⚓</div>
                     <div class="clue-text">
-                        <p class="riddle-line">Heavy iron sinks below the waves,</p>
-                        <p class="riddle-line">Holds the vessel steady and brave.</p>
-                        <p class="riddle-line">When storms rage fierce and winds howl loud,</p>
-                        <p class="riddle-line">This steadfast friend won't let you down.</p>
+                        <p class="riddle-line">Journey to <a href="https://linked.earth/PaleoBooks/index.html" target="_blank">PaleoBooks</a>, a library vast and deep,</p>
+                        <p class="riddle-line">Where spectral secrets wait and sleep.</p>
+                        <p class="riddle-line">Find the book that holds the MTM key,</p>
+                        <p class="riddle-line">To analyze your data's frequency.</p>
+                        <p class="riddle-line">Run the method with your Series's tale,</p>
+                        <p class="riddle-line">The 51st amplitude shall not fail.</p>
+                        <p class="riddle-question">What is the 51st amplitude value (to two decimal places)?</p>
                     </div>
                     <div class="clue-decoration mirror">⚓</div>
                 </div>
 
-                <div class="treasure-reveal">
-                    <h2 class="reveal-title">The Treasure Awaits</h2>
-                    <div class="treasure-box">
-                        <div class="treasure-content">
-                            <p class="treasure-message">
-                                🏆 Congratulations, brave adventurer! 🏆
-                            </p>
-                            <p class="treasure-description">
-                                You have followed the meridian's line, navigated by the compass's spin,
-                                and reached the anchor's resting place. The treasure is yours!
-                            </p>
-                            <div class="treasure-item">
-                                <div class="treasure-chest">💎</div>
-                                <p class="treasure-name">The Lost Sapphire of the Seven Seas</p>
+                <div class="answer-section">
+                    <div class="answer-input-container">
+                        <input type="text" id="answer-input" class="answer-input" placeholder="Enter your answer...">
+                        <button onclick="checkAnswer()" class="submit-button">Submit Answer</button>
+                    </div>
+                    <div id="feedback" class="feedback-message"></div>
+                    <div id="treasure-reveal" class="treasure-reveal" style="display: none;">
+                        <h2 class="reveal-title">The Treasure Awaits</h2>
+                        <div class="treasure-box">
+                            <div class="treasure-content">
+                                <p class="treasure-message">
+                                    🏆 Congratulations, brave adventurer! 🏆
+                                </p>
+                                <p class="treasure-description">
+                                    You have explored data with PaleoPresto, visualized time with warming stripes,
+                                    and unlocked the frequencies hidden in the past. The treasure is almost yours!
+                                </p>
+                                <div class="treasure-item">
+                                    <div class="treasure-chest">💎</div>
+                                    <p class="treasure-name">Master of LinkedEarth Tools</p>
+                                </div>
+                                <div class="treasure-instructions">
+                                    <p style="margin-top: 20px; font-size: 1.1em; font-weight: bold;">
+                                        🎁 Claim Your Prize! 🎁
+                                    </p>
+                                    <p style="margin-top: 10px;">
+                                        Be among the <strong>first three</strong> to find us at the <strong>Thursday afternoon Informatics Poster Session</strong> to collect your treasure!
+                                    </p>
+                                    <p style="margin-top: 10px; font-style: italic;">
+                                        Look for the LinkedEarth team - we'll be waiting for you!
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <script>
+                function checkAnswer() {
+                    const input = document.getElementById('answer-input').value.trim();
+                    const feedback = document.getElementById('feedback');
+                    const treasureReveal = document.getElementById('treasure-reveal');
+
+                    // Parse the input as a number
+                    const answer = parseFloat(input);
+
+                    // Accept answers between 3.1 and 3.15 (inclusive)
+                    if (!isNaN(answer) && answer >= 3.1 && answer <= 3.15) {
+                        feedback.textContent = '';
+                        treasureReveal.style.display = 'block';
+                        document.getElementById('answer-input').disabled = true;
+                    } else if (input === '') {
+                        feedback.textContent = 'Please enter an answer.';
+                        feedback.className = 'feedback-message error';
+                    } else {
+                        feedback.textContent = 'Not quite right. Check the 51st amplitude value in your spectral analysis results...';
+                        feedback.className = 'feedback-message error';
+                    }
+                }
+
+                // Allow Enter key to submit
+                document.getElementById('answer-input').addEventListener('keypress', function(event) {
+                    if (event.key === 'Enter') {
+                        checkAnswer();
+                    }
+                });
+                </script>
+
+                <div class="hint-section">
+                    <details class="hint-toggle">
+                        <summary>Need a hint?</summary>
+                        <p class="hint-text">
+                            In PaleoBooks, look for the notebook about spectral analysis using the MTM (Multitaper Method). Run the analysis on your Series. You can access information about amplitude using psd.amplitude in your quest. Remember: Python uses zero-based indexing, so the 51st value is at index 50. Round your answer to two decimal places. To find us, check out our <a href="https://linked.earth" target="_blank">website</a> to see what we look like!
+                        </p>
+                    </details>
                 </div>
             </main>
 
