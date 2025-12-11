@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clue Two: Compass</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="page-container clue-page">
+        <div class="compass-decoration animate"></div>
+        <div class="content-wrapper">
+            <header class="clue-header">
+                <div class="clue-number">Clue II</div>
+                <h1 class="title-clue">The Navigator's Guide</h1>
+            </header>
+
+            <main class="main-content">
+                <div class="clue-box">
+                    <div class="clue-decoration">⊕</div>
+                    <div class="clue-text">
+                        <p class="riddle-line">Four cardinal points spin round and round,</p>
+                        <p class="riddle-line">North seeks south, magnetic bound.</p>
+                        <p class="riddle-line">When sailors drift far from the shore,</p>
+                        <p class="riddle-line">This faithful tool guides evermore.</p>
+                        <p class="riddle-question">What heavy iron object keeps a ship from drifting when it drops to the seafloor?</p>
+                    </div>
+                    <div class="clue-decoration mirror">⊕</div>
+                </div>
+
+                <div class="answer-section">
+                    <div class="answer-input-container">
+                        <input type="text" id="answer-input" class="answer-input" placeholder="Enter your answer...">
+                        <button onclick="checkAnswer()" class="submit-button">Submit Answer</button>
+                    </div>
+                    <div id="feedback" class="feedback-message"></div>
+                    <div id="next-clue" class="next-clue-reveal" style="display: none;">
+                        <p class="success-message">🎉 Correct! The final page is:</p>
+                        <p class="next-page-name"><strong>anchor.html</strong></p>
+                        <a href="anchor.html" class="nav-button primary">Continue to Final Clue →</a>
+                    </div>
+                </div>
+
+                <script>
+                function checkAnswer() {
+                    const input = document.getElementById('answer-input').value.trim().toLowerCase();
+                    const feedback = document.getElementById('feedback');
+                    const nextClue = document.getElementById('next-clue');
+                    
+                    // Accept variations of the answer
+                    const correctAnswers = ['anchor', 'an anchor', 'the anchor'];
+                    
+                    if (correctAnswers.includes(input)) {
+                        feedback.textContent = '';
+                        nextClue.style.display = 'block';
+                        document.getElementById('answer-input').disabled = true;
+                    } else if (input === '') {
+                        feedback.textContent = 'Please enter an answer.';
+                        feedback.className = 'feedback-message error';
+                    } else {
+                        feedback.textContent = 'Not quite right. Think about what keeps a ship in place...';
+                        feedback.className = 'feedback-message error';
+                    }
+                }
+                
+                // Allow Enter key to submit
+                document.getElementById('answer-input').addEventListener('keypress', function(event) {
+                    if (event.key === 'Enter') {
+                        checkAnswer();
+                    }
+                });
+                </script>
+
+                <div class="hint-section">
+                    <details class="hint-toggle">
+                        <summary>Need a hint?</summary>
+                        <p class="hint-text">
+                            Ships use this heavy metal device, attached to a chain, to stay in one place when they stop. It sinks to the ocean floor and grips the seabed.
+                        </p>
+                    </details>
+                </div>
+            </main>
+
+            <footer class="page-footer">
+                <p>Two clues found. One remains.</p>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>

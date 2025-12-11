@@ -1,0 +1,689 @@
+:root {
+    --parchment: #f4e8d0;
+    --aged-paper: #e8dcc4;
+    --ink-dark: #2c1810;
+    --ink-medium: #4a3228;
+    --sepia: #8b6f47;
+    --gold: #d4af37;
+    --rust: #b85c38;
+    --ocean: #2d5f6f;
+    --shadow: rgba(44, 24, 16, 0.3);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Crimson Text', serif;
+    background: linear-gradient(135deg, var(--aged-paper) 0%, var(--parchment) 100%);
+    color: var(--ink-dark);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(139, 111, 71, 0.03) 2px,
+            rgba(139, 111, 71, 0.03) 4px
+        );
+    pointer-events: none;
+    z-index: 1;
+}
+
+.page-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.compass-decoration {
+    position: fixed;
+    top: 5%;
+    right: 5%;
+    width: 120px;
+    height: 120px;
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.compass-decoration::before {
+    content: '✦';
+    font-size: 120px;
+    color: var(--sepia);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.compass-decoration.animate::before {
+    animation: rotateCompass 20s linear infinite;
+}
+
+@keyframes rotateCompass {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.content-wrapper {
+    max-width: 800px;
+    width: 100%;
+    background: var(--parchment);
+    border: 3px solid var(--ink-dark);
+    box-shadow: 
+        0 10px 40px var(--shadow),
+        inset 0 0 60px rgba(139, 111, 71, 0.1);
+    padding: 3rem;
+    position: relative;
+}
+
+.content-wrapper::before,
+.content-wrapper::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--ink-dark);
+}
+
+.content-wrapper::before {
+    top: 15px;
+    left: 15px;
+    border-right: none;
+    border-bottom: none;
+}
+
+.content-wrapper::after {
+    bottom: 15px;
+    right: 15px;
+    border-left: none;
+    border-top: none;
+}
+
+/* Typography */
+.treasure-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid var(--sepia);
+    position: relative;
+}
+
+.title-main {
+    font-family: 'Cinzel', serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--ink-dark);
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px var(--shadow);
+    animation: fadeInDown 1s ease-out;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.subtitle {
+    font-size: 1.3rem;
+    color: var(--ink-medium);
+    font-style: italic;
+    letter-spacing: 0.08em;
+    animation: fadeIn 1.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.clue-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.clue-number {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    letter-spacing: 0.3em;
+    color: var(--sepia);
+    margin-bottom: 1rem;
+    animation: fadeIn 0.8s ease-out;
+}
+
+.title-clue {
+    font-family: 'Cinzel', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--ink-dark);
+    letter-spacing: 0.03em;
+    animation: fadeInDown 1s ease-out;
+}
+
+/* Content Sections */
+.intro-box {
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.3);
+    border-left: 4px solid var(--gold);
+    animation: slideInLeft 1s ease-out;
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.intro-text {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--ink-dark);
+    margin-bottom: 1rem;
+}
+
+.intro-text:last-child {
+    margin-bottom: 0;
+}
+
+.clue-box {
+    margin: 3rem 0;
+    padding: 3rem 2rem;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.4), rgba(255,255,255,0.1));
+    border: 2px solid var(--ink-dark);
+    position: relative;
+    animation: scaleIn 0.8s ease-out;
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.clue-decoration {
+    font-size: 2rem;
+    color: var(--sepia);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.clue-decoration.mirror {
+    transform: scaleY(-1);
+    margin-bottom: 0;
+    margin-top: 2rem;
+}
+
+.clue-text {
+    text-align: center;
+}
+
+.riddle-line {
+    font-size: 1.3rem;
+    line-height: 1.9;
+    color: var(--ink-dark);
+    font-style: italic;
+    margin-bottom: 0.5rem;
+}
+
+/* Hints */
+.hint-section {
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.hint-toggle {
+    display: inline-block;
+    cursor: pointer;
+    padding: 0.8rem 1.5rem;
+    background: var(--aged-paper);
+    border: 1px solid var(--sepia);
+    transition: all 0.3s ease;
+}
+
+.hint-toggle:hover {
+    background: var(--parchment);
+    border-color: var(--ink-dark);
+}
+
+.hint-toggle summary {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    color: var(--ink-medium);
+}
+
+.hint-text {
+    margin-top: 1rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.5);
+    border-left: 3px solid var(--rust);
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--ink-dark);
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Answer Section */
+.answer-section {
+    margin: 3rem 0;
+    animation: fadeIn 1s ease-out 0.3s both;
+}
+
+.answer-input-container {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.answer-input {
+    flex: 1;
+    min-width: 200px;
+    padding: 1rem 1.5rem;
+    font-family: 'Crimson Text', serif;
+    font-size: 1.1rem;
+    background: rgba(255, 255, 255, 0.8);
+    border: 2px solid var(--sepia);
+    color: var(--ink-dark);
+    transition: all 0.3s ease;
+}
+
+.answer-input:focus {
+    outline: none;
+    border-color: var(--gold);
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+}
+
+.answer-input:disabled {
+    background: var(--aged-paper);
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.submit-button {
+    padding: 1rem 2.5rem;
+    background: var(--ink-dark);
+    color: var(--parchment);
+    border: 2px solid var(--ink-dark);
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.submit-button:hover {
+    background: var(--sepia);
+    border-color: var(--sepia);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px var(--shadow);
+}
+
+.submit-button:active {
+    transform: translateY(0);
+}
+
+.feedback-message {
+    padding: 1rem 1.5rem;
+    margin: 1rem 0;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    animation: slideInLeft 0.3s ease-out;
+}
+
+.feedback-message.error {
+    background: rgba(184, 92, 56, 0.15);
+    border-left: 4px solid var(--rust);
+    color: var(--rust);
+}
+
+.next-clue-reveal {
+    margin-top: 2rem;
+    padding: 2.5rem;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05));
+    border: 2px solid var(--gold);
+    text-align: center;
+    animation: scaleIn 0.5s ease-out;
+}
+
+.success-message {
+    font-size: 1.3rem;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.next-page-name {
+    font-family: 'Cinzel', serif;
+    font-size: 1.6rem;
+    color: var(--ink-dark);
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid var(--sepia);
+}
+
+.next-page-name strong {
+    color: var(--ocean);
+}
+
+.next-clue-reveal .nav-button {
+    display: inline-block;
+    margin-top: 1.5rem;
+}
+
+.riddle-question {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--ink-dark);
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--sepia);
+    font-style: normal;
+}
+
+/* Buttons */
+.start-container {
+    text-align: center;
+    margin: 3rem 0;
+}
+
+.start-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.2rem 3rem;
+    background: var(--ink-dark);
+    color: var(--parchment);
+    text-decoration: none;
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem;
+    letter-spacing: 0.08em;
+    border: 3px solid var(--ink-dark);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+}
+
+.start-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: var(--gold);
+    transform: translate(-50%, -50%);
+    transition: width 0.4s ease, height 0.4s ease;
+    z-index: -1;
+}
+
+.start-button:hover {
+    color: var(--ink-dark);
+    border-color: var(--gold);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px var(--shadow);
+}
+
+.start-button:hover::before {
+    width: 110%;
+    height: 300%;
+}
+
+.button-decoration {
+    font-size: 1.5rem;
+}
+
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 3rem;
+}
+
+.nav-button {
+    flex: 1;
+    padding: 1rem 2rem;
+    text-align: center;
+    text-decoration: none;
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+    border: 2px solid var(--ink-dark);
+    transition: all 0.3s ease;
+}
+
+.nav-button.primary {
+    background: var(--ink-dark);
+    color: var(--parchment);
+}
+
+.nav-button.primary:hover {
+    background: var(--sepia);
+    border-color: var(--sepia);
+    transform: translateX(3px);
+}
+
+.nav-button.secondary {
+    background: transparent;
+    color: var(--ink-dark);
+}
+
+.nav-button.secondary:hover {
+    background: var(--aged-paper);
+    transform: translateX(-3px);
+}
+
+/* Warning & Footer */
+.warning-note {
+    text-align: center;
+    margin-top: 3rem;
+    padding: 1.5rem;
+    background: rgba(184, 92, 56, 0.1);
+    border: 1px solid var(--rust);
+}
+
+.warning-note p {
+    font-size: 1.1rem;
+    color: var(--ink-medium);
+    font-style: italic;
+}
+
+.page-footer {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 2px solid var(--sepia);
+    text-align: center;
+}
+
+.page-footer p {
+    font-size: 1.1rem;
+    color: var(--ink-medium);
+    font-style: italic;
+    letter-spacing: 0.05em;
+}
+
+/* Treasure Reveal */
+.treasure-reveal {
+    margin: 3rem 0;
+    animation: fadeIn 1s ease-out 0.5s both;
+}
+
+.reveal-title {
+    font-family: 'Cinzel', serif;
+    font-size: 2rem;
+    text-align: center;
+    color: var(--gold);
+    margin-bottom: 2rem;
+    text-shadow: 1px 1px 2px var(--shadow);
+}
+
+.treasure-box {
+    padding: 3rem;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.05));
+    border: 3px double var(--gold);
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+}
+
+.treasure-content {
+    text-align: center;
+}
+
+.treasure-message {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+}
+
+.treasure-description {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--ink-dark);
+    margin-bottom: 2rem;
+}
+
+.treasure-item {
+    margin-top: 2rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.treasure-chest {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.treasure-name {
+    font-family: 'Cinzel', serif;
+    font-size: 1.4rem;
+    color: var(--ocean);
+    font-weight: 600;
+    letter-spacing: 0.03em;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .content-wrapper {
+        padding: 2rem;
+    }
+    
+    .title-main {
+        font-size: 2.5rem;
+    }
+    
+    .subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .title-clue {
+        font-size: 2rem;
+    }
+    
+    .riddle-line {
+        font-size: 1.1rem;
+    }
+    
+    .navigation-buttons {
+        flex-direction: column;
+    }
+    
+    .compass-decoration {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .compass-decoration::before {
+        font-size: 80px;
+    }
+    
+    .answer-input-container {
+        flex-direction: column;
+    }
+    
+    .answer-input {
+        width: 100%;
+    }
+    
+    .submit-button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-container {
+        padding: 1rem;
+    }
+    
+    .content-wrapper {
+        padding: 1.5rem;
+    }
+    
+    .title-main {
+        font-size: 2rem;
+    }
+    
+    .start-button {
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
+    }
+    
+    .next-page-name {
+        font-size: 1.3rem;
+    }
+    
+    .riddle-question {
+        font-size: 1.1rem;
+    }
+}
